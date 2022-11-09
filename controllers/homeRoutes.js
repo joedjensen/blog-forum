@@ -13,14 +13,18 @@ router.get('/dashboard', async (req, res) => {
       user_id: req.session.user_id
     }, include: User });
     const posts = dbPostData.map((project) => project.get({ plain: true }));
-    res.render('dashboard', { posts });
+    res.render('dashboard', { posts, logged_in: req.session.logged_in});
   } else {
-    res.render('login');
+    res.render('login', {logged_in: req.session.logged_in});
   }
 });
 
+router.get('/dashboard/new-post', async (req, res) => {  
+    res.render('post-form', {logged_in: req.session.logged_in});
+});
+
 router.get('/login', async (req, res) => {  
-  res.render('login');
+  res.render('login', { logged_in: req.session.logged_in} );
 });
 
 router.get('/posts/:id', async (req, res) => {
