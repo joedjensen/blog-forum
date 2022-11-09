@@ -7,4 +7,12 @@ router.get('/', async (req, res) => {
   res.render('homepage', { posts, logged_in: req.session.logged_in });
 });
 
+router.get('/dashboard', async (req, res) => {  
+  res.render('login');
+});
+
+router.get('/login', async (req, res) => {  
+  res.render('login');
+});
+
 module.exports = router;
