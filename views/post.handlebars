@@ -1,1 +1,11 @@
 {{> post-details post}}
+{{#each comments as |comment| }}
+{{> comment}}
+{{/each}}
+{{#if logged_in}}
+<div class="form-outline mb-4">
+    <input type="input" id="comment-text" class="form-control form-control-lg" placeholder="Add Comment"/>
+</div>
+<div class="btn btn-primary" id="add-comment">Add comment</div>
+<script src="/js/add-comment.js"></script>
+{{/if}}
