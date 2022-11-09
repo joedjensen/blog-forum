@@ -23,6 +23,13 @@ router.get('/dashboard/new-post', async (req, res) => {
     res.render('post-form', {logged_in: req.session.logged_in});
 });
 
+router.get('/dashboard/posts/:id', async (req, res) => {  
+    const dbPostData = await Post.findByPk(req.params.id);
+    const post = dbPostData.get({ plain: true });
+    console.log(post)
+    res.render('edit-post', { post, logged_in: req.session.logged_in});
+});
+
 router.get('/login', async (req, res) => {  
   res.render('login', { logged_in: req.session.logged_in} );
 });

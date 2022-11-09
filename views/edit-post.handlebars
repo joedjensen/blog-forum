@@ -1,0 +1,21 @@
+<div class="card" data-post-id = {{post.id}}>
+    <h3 class="card-header">Edit Post</h3>
+    <div class="card-body">
+            <div class="form-outline mb-4">
+                <label class="form-label" for="post-name" >Post Title</label>
+                <input type="input" id="post-name" class="form-control form-control-lg" value="{{post.name}}"/>
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="post-content">Content</label>
+                <textarea type="textarea" id="post-content" class="form-control form-control-lg" style="height:200px">{{post.description}}</textarea>
+            </div>
+    </div>
+    <div class = "d-flex container justify-content-around"> 
+        <div class="btn btn-primary m-3 col-5" id = 'update-post'>Update</div>
+        <div class="btn btn-primary m-3 col-5" id = 'delete-post'>Delete</div>
+    </div>
+
+</div>
+
+<script src="/js/edit-post.js"></script>
