@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
+const withAuth = require('../utils/auth')
 
 router.get('/', async (req, res) => {
   const dbPostData = await Post.findAll({ include: User });
@@ -7,7 +8,7 @@ router.get('/', async (req, res) => {
   res.render('homepage', { posts, logged_in: req.session.logged_in });
 });
 
-router.get('/dashboard', async (req, res) => {  
+router.get('/dashboard',withAuth, async (req, res) => {  
   if (req.session.logged_in) {
     const dbPostData = await Post.findAll({where: {
       user_id: req.session.user_id
@@ -19,11 +20,11 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
-router.get('/dashboard/new-post', async (req, res) => {  
+router.get('/dashboard/new-post', withAuth, async (req, res) => {  
     res.render('post-form', {logged_in: req.session.logged_in});
 });
 
-router.get('/dashboard/posts/:id', async (req, res) => {  
+router.get('/dashboard/posts/:id',withAuth, async (req, res) => {  
     const dbPostData = await Post.findByPk(req.params.id);
     const post = dbPostData.get({ plain: true });
     console.log(post)
